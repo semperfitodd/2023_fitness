@@ -2,8 +2,8 @@ data "aws_iam_policy_document" "fitness_site" {
   statement {
     effect = "Allow"
     principals {
-      identifiers = ["*"]
-      type        = "*"
+      identifiers = module.cdn.cloudfront_origin_access_identity_iam_arns
+      type        = "AWS"
     }
     actions   = ["s3:GetObject"]
     resources = ["${module.fitness_site.s3_bucket_arn}/*"]
@@ -34,10 +34,6 @@ module "fitness_site" {
         sse_algorithm = "AES256"
       }
     }
-  }
-
-  website = {
-    index_document = "index.html"
   }
 
   tags = var.tags
