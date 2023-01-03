@@ -23,6 +23,11 @@ module "fitness_site" {
   attach_policy        = true
   policy               = data.aws_iam_policy_document.fitness_site.json
 
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+
   control_object_ownership = true
   object_ownership         = "BucketOwnerPreferred"
 
