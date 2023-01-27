@@ -43,11 +43,3 @@ module "fitness_site" {
 
   tags = var.tags
 }
-
-resource "aws_s3_object" "index" {
-  bucket = module.fitness_site.s3_bucket_id
-  key    = "index.html"
-  source = "${path.module}/index.html"
-
-  etag = filemd5("${path.module}/index.html")
-}
